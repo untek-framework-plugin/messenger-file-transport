@@ -3,7 +3,7 @@
 namespace Untek\FrameworkPlugin\MessengerFileTransport\Infrastructure\Messenger\Symfony\Transport;
 
 use Untek\FrameworkPlugin\MessengerFileTransport\Infrastructure\Messenger\Entities\MessageEntity;
-use Mservis\Operator\Module\Bus\Infrastructure\Messenger\Symfony\Stamp\TopicStamp;
+use Untek\Framework\Messenger\Infrastructure\Messenger\Symfony\Stamp\TopicStamp;
 use Untek\FrameworkPlugin\MessengerFileTransport\Infrastructure\Persistence\FileStorage\Repository\FileRepository;
 use longlang\phpkafka\Producer\ProduceMessage;
 use longlang\phpkafka\Producer\Producer;
