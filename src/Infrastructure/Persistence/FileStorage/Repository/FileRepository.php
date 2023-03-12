@@ -7,7 +7,7 @@ use Untek\Core\Contract\Common\Exceptions\NotFoundException;
 use Untek\Core\FileSystem\Helpers\FileHelper;
 use Untek\Core\FileSystem\Helpers\FileStorageHelper;
 use Untek\Core\FileSystem\Helpers\FindFileHelper;
-use Untek\Core\Property\Helpers\PropertyHelper;
+use Untek\Core\Instance\Helpers\PropertyHelper;
 
 class FileRepository
 {
