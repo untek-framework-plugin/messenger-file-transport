@@ -76,7 +76,8 @@ class FileRepository
             $item = $this->load($fileName);
             if ($item['topic'] == $this->topic) {
                 /** @var MessageEntity $messageEntity */
-                $messageEntity = PropertyHelper::createObject($this->getEntityClass(), $item);
+                $messageEntity = new MessageEntity();
+                PropertyHelper::setAttributes($messageEntity, $item);
                 return $messageEntity;
             }
         }
