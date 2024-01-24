@@ -11,7 +11,7 @@ class FileTransportHelper
 
     public static function clearQueue()
     {
-        $directory = getenv('VAR_SHARED_DIRECTORY') . '/bus-file-db';
+        $directory = self::getBaseDirectory();
         (new Filesystem())->remove($directory);
     }
 
@@ -21,7 +21,7 @@ class FileTransportHelper
         if (count($files) > 1) {
             throw new RuntimeException('Many files!');
         }
-        $content = file_get_contents($directory . '/' . $topic . '/handled/' . $files[0]);
+        $content = file_get_contents(self::getDirectory($topic, 'handled') . '/' . $files[0]);
         $data = json_decode($content, true);
         $messageClass = $data['headers']['type'];
         $message = new $messageClass();
@@ -38,7 +38,17 @@ class FileTransportHelper
 
     private static function scan(string $topic, string $type): array
     {
-        $directory = getenv('VAR_SHARED_DIRECTORY') . '/bus-file-db';
-        return FindFileHelper::scanDir($directory . '/' . $topic . '/' . $type);
+        return FindFileHelper::scanDir(self::getDirectory($topic, $type));
+    }
+
+    private static function getDirectory(string $topic, string $type): string
+    {
+        $directory = self::getBaseDirectory();
+        return $directory . '/' . $topic . '/' . $type;
+    }
+
+    private static function getBaseDirectory(): string
+    {
+        return getenv('VAR_SHARED_DIRECTORY') . '/bus-file-db';
     }
 }
