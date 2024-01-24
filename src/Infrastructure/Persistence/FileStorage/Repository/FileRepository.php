@@ -40,7 +40,7 @@ class FileRepository
 
     protected function getDirectory(): string
     {
-        return getenv('VAR_DIRECTORY') . '/bus-file-db';
+        return getenv('VAR_SHARED_DIRECTORY') . '/bus-file-db';
     }
 
     public function create(MessageEntity $entity): void
