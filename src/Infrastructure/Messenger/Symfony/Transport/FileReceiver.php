@@ -35,7 +35,10 @@ class FileReceiver implements ReceiverInterface
     {
         /** @var TransportMessageIdStamp $transportMessageIdStamp */
         $transportMessageIdStamp = $envelope->last(TransportMessageIdStamp::class);
-        $this->fileRepository->deleteById($transportMessageIdStamp->getId());
+        try {
+            $this->fileRepository->deleteById($transportMessageIdStamp->getId());
+        } catch (NotFoundException) {
+        }
     }
 
     public function reject(Envelope $envelope): void
